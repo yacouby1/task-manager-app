@@ -27,167 +27,335 @@ http://localhost:3000
 
 ## AI Usage Details
 
-I used AI throughout this project when I got stuck or didn’t understand certain parts of React. Below are the types of questions I asked and how AI helped me. I tried to understand the explanations instead of just copying code.
+I used AI heavily throughout this project because I was confused at multiple points, especially with React state, props, folder structure, and using the terminal for setup. I asked a lot of small, basic questions and worked through the project step by step instead of trying to do everything at once.
 
 ---
 
-Prompt 1:
-"I don’t really understand how to start the TaskBoard component. How do I even store tasks and what does useState look like?"
+**Prompt 1:**  
+"I don’t understand what to type in the terminal to even start this project. What am I supposed to run first?"
 
-AI Response:
-AI showed me:
+**AI Response:**  
+AI explained how to use `npx create-next-app` and guided me through each setup question step by step.
+
+---
+
+**Prompt 2:**  
+"It’s asking me questions like TypeScript and Tailwind and I don’t know what to pick"
+
+**AI Response:**  
+AI told me exactly which options to choose (No TypeScript, Yes Tailwind, Yes App Router) to keep things simple.
+
+---
+
+**Prompt 3:**  
+"I don’t get why my localhost page isn’t working"
+
+**AI Response:**  
+AI explained I needed to run `npm run dev` and keep the terminal open.
+
+---
+
+**Prompt 4:**  
+"Can I close the terminal or will it break everything?"
+
+**AI Response:**  
+AI explained that closing the terminal stops the app, but I can restart it with `npm run dev`.
+
+---
+
+**Prompt 5:**  
+"I don’t understand what page.js even does"
+
+**AI Response:**  
+AI explained that `page.js` is the main page and is where components get rendered.
+
+---
+
+**Prompt 6:**  
+"I don’t get where I’m supposed to put components, I keep messing up the folders"
+
+**AI Response:**  
+AI showed that components belong in `src/components` and not inside `app`.
+
+---
+
+**Prompt 7:**  
+"I accidentally made the components folder inside app and everything broke"
+
+**AI Response:**  
+AI walked me step by step to delete it and recreate it in the correct place.
+
+---
+
+**Prompt 8:**  
+"I don’t understand why my import isn’t working"
+
+**AI Response:**  
+AI explained relative paths like:
+```js
+import TaskBoard from '../components/TaskBoard';
+```
+
+---
+
+**Prompt 9:**  
+"I don’t understand useState at all"
+
+**AI Response:**  
+AI explained it simply and showed:
 ```js
 const [tasks, setTasks] = useState([]);
 ```
-and explained that tasks stores the data and setTasks updates it. This helped me understand how React state works.
 
 ---
 
-Prompt 2:
-"My input box isn’t doing anything. How does it actually save what the user types?"
+**Prompt 10:**  
+"Why do we need useState instead of a normal variable?"
 
-AI Response:
-AI explained controlled inputs and gave:
-```js
-value={title}
-onChange={(e) => setTitle(e.target.value)}
-```
-It explained that e.target.value is whatever the user types, which helped it click for me.
+**AI Response:**  
+AI explained that React only updates the UI when state changes.
 
 ---
 
-Prompt 3:
-"I don’t understand how to send data from the form to the main component. How do components talk to each other?"
+**Prompt 11:**  
+"I don’t understand how to add a task from the input"
 
-AI Response:
-AI showed:
-```js
-<AddTaskForm onAddTask={handleAddTask} />
-```
-and inside the form:
-```js
-onAddTask(title);
-```
-This helped me understand props and how data flows between components.
+**AI Response:**  
+AI helped me create a controlled input and pass the value using props.
 
 ---
 
-Prompt 4:
-"How do I show all the tasks on the screen? Do I use a loop?"
+**Prompt 12:**  
+"What does e.target.value even mean?"
 
-AI Response:
-AI explained .map():
-```js
-tasks.map((task) => (
-  <div>{task.title}</div>
-))
-```
-and compared it to a loop, which made it easier to understand.
+**AI Response:**  
+AI explained that it represents what the user is typing in the input.
 
 ---
 
-Prompt 5:
-"My toggle button is either not working or changing everything. How do I only update one task?"
+**Prompt 13:**  
+"I don’t get how the form sends data to TaskBoard"
 
-AI Response:
+**AI Response:**  
+AI showed how to pass a function as a prop and call it inside the form.
+
+---
+
+**Prompt 14:**  
+"My tasks aren’t showing up after I add them"
+
+**AI Response:**  
+AI explained I needed to update state using:
+```js
+setTasks([...tasks, newTask]);
+```
+
+---
+
+**Prompt 15:**  
+"Why do we use ...tasks?"
+
+**AI Response:**  
+AI explained it copies the array so React detects a change.
+
+---
+
+**Prompt 16:**  
+"I don’t understand how to display multiple tasks"
+
+**AI Response:**  
+AI showed how to use `.map()` to render each task.
+
+---
+
+**Prompt 17:**  
+"I don’t get map at all"
+
+**AI Response:**  
+AI explained it like a loop that returns a new list.
+
+---
+
+**Prompt 18:**  
+"My toggle button changes everything instead of one task"
+
+**AI Response:**  
 AI showed:
 ```js
 tasks.map((task) =>
   task.id === id ? { ...task, done: !task.done } : task
 )
 ```
-and explained that it checks the id and only changes the matching task.
 
 ---
 
-Prompt 6:
-"I tried deleting a task but it deletes everything. How do I delete just one?"
+**Prompt 19:**  
+"I don’t understand that line at all"
 
-AI Response:
-AI explained .filter():
+**AI Response:**  
+AI broke it down into: check id → copy object → flip done.
+
+---
+
+**Prompt 20:**  
+"What does ...task mean?"
+
+**AI Response:**  
+AI explained it copies all properties of the object.
+
+---
+
+**Prompt 21:**  
+"My delete button deletes all tasks"
+
+**AI Response:**  
+AI explained `.filter()`:
 ```js
 tasks.filter((task) => task.id !== id)
 ```
-and said it keeps everything except the one clicked.
 
 ---
 
-Prompt 7:
-"I don’t get how to make the All / Active / Done buttons. How does it know what to show?"
+**Prompt 22:**  
+"I don’t understand filter"
 
-AI Response:
+**AI Response:**  
+AI explained it removes the matching item and keeps the rest.
+
+---
+
+**Prompt 23:**  
+"How do I make the text cross out when done?"
+
+**AI Response:**  
+AI showed conditional class:
+```js
+task.done ? 'line-through' : ''
+```
+
+---
+
+**Prompt 24:**  
+"I don’t understand props at all"
+
+**AI Response:**  
+AI explained props as passing data/functions between components.
+
+---
+
+**Prompt 25:**  
+"I don’t get why we have TaskList and TaskCard"
+
+**AI Response:**  
+AI explained separation of concerns and reusable components.
+
+---
+
+**Prompt 26:**  
+"I don’t understand how these components connect"
+
+**AI Response:**  
+AI explained the flow:
+TaskBoard → TaskList → TaskCard
+
+---
+
+**Prompt 27:**  
+"I don’t understand how the filter buttons work"
+
+**AI Response:**  
 AI showed:
 ```js
 const [filter, setFilter] = useState('all');
 ```
-and filtering logic:
-```js
-if (filter === 'active') return !task.done;
-if (filter === 'done') return task.done;
-```
 
 ---
 
-Prompt 8:
-"My code wasn’t updating when I changed things. Why does React not update sometimes?"
+**Prompt 28:**  
+"How does it know what tasks to show?"
 
-AI Response:
-AI explained that React needs a NEW array, not modifying the old one. That’s why we use map and filter instead of directly editing.
-
----
-
-Prompt 9:
-"I got really confused with the folder structure. Should components go inside src or app?"
-
-AI Response:
-AI explained components should go in:
-src/components
-and that app is mainly for pages. This helped fix my structure.
+**AI Response:**  
+AI explained filtering logic with conditions.
 
 ---
 
-Prompt 10:
-"I accidentally put my components in the wrong folder and everything broke. How do I fix the imports?"
+**Prompt 29:**  
+"My filtered tasks aren’t updating"
 
-AI Response:
-AI showed how to fix imports like:
-```js
-import TaskBoard from '../components/TaskBoard';
-```
-and explained how relative paths work.
+**AI Response:**  
+AI explained derived values and re-rendering.
 
 ---
 
-Prompt 11:
-"I don’t understand how TaskBoard, TaskList, and TaskCard connect. Mine wasn’t showing anything."
+**Prompt 30:**  
+"I don’t understand why React isn’t updating sometimes"
 
-AI Response:
-AI explained passing props step by step:
-TaskBoard → TaskList → TaskCard  
-This helped me understand component structure.
+**AI Response:**  
+AI explained that React needs a new array instead of mutating the old one.
 
 ---
 
-Prompt 12:
-"My toggle and delete buttons weren’t working together. What am I doing wrong?"
+**Prompt 31:**  
+"How do I save tasks after refresh?"
 
-AI Response:
-AI explained I needed separate functions (handleToggle and handleDelete) and pass both down as props.
+**AI Response:**  
+AI showed localStorage with useEffect.
 
 ---
 
-Prompt 13:
-"I’ve never uploaded a project to GitHub like this. How do I connect everything?"
+**Prompt 32:**  
+"I don’t understand useEffect"
 
-AI Response:
+**AI Response:**  
+AI explained it runs code when dependencies change.
+
+---
+
+**Prompt 33:**  
+"Why do we use JSON.stringify?"
+
+**AI Response:**  
+AI explained it converts objects into strings for storage.
+
+---
+
+**Prompt 34:**  
+"Why do we use JSON.parse?"
+
+**AI Response:**  
+AI explained it converts stored strings back into objects.
+
+---
+
+**Prompt 35:**  
+"I don’t understand how to push this to GitHub"
+
+**AI Response:**  
 AI walked me through:
 ```bash
 git add .
 git commit -m "message"
 git push
 ```
-and explained what each command does.
 
 ---
 
-Overall, AI helped me understand React concepts like state, props, and array methods (map and filter). I made sure to understand the code instead of just copying it.
+**Prompt 36:**  
+"I pasted all commands at once and it broke"
+
+**AI Response:**  
+AI explained to run commands one at a time and use Ctrl+C if stuck.
+
+---
+
+**Prompt 37:**  
+"My GitHub repo is empty even after I created it"
+
+**AI Response:**  
+AI explained I needed to run `git push` to upload files.
+
+---
+
+## Summary
+
+Overall, I was very confused during this project, especially with React concepts like state, props, and how components connect. I also struggled with the folder structure and using the terminal correctly for setup and GitHub. AI helped guide me step by step, breaking things down into simple explanations and showing example code when I didn’t understand. I used AI more like a tutor than a generator, asking many follow-up questions until things made sense. The most confusing parts for me were updating state correctly using map and filter, passing data between components, and understanding how localStorage works with useEffect. By the end, I understood how all the pieces connect and was able to build the full application.
